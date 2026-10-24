@@ -112,16 +112,14 @@
                 <td>08:00~11:50</td>
           `;
 
-          // 填寫上午列 (日:0 到 五:5)
-          for (let d = 0; d <= 5; d++) {
-            tableHtml += `<td>${grid.morn[d] ? '○' : '休'}</td>`;
-          }
-
-          // 週六(6)若全天公休，使用 rowspan=2 合併儲存格
-          if (!grid.morn[6] && !grid.aft[6]) {
-            tableHtml += `<td rowspan="2" class="ic">休</td>`;
-          } else {
-            tableHtml += `<td>${grid.morn[6] ? '○' : '休'}</td>`;
+          // 填寫上午列 (日:0 到 六:6)
+          for (let d = 0; d <= 6; d++) {
+             // 若全天公休，使用 rowspan=2 合併儲存格
+			  if (!grid.morn[d] && !grid.aft[d]) {
+				tableHtml += `<td rowspan="2" class="ic">休</td>`;
+			  } else {
+				tableHtml += `<td>${grid.morn[d] ? '○' : '休'}</td>`;
+			  }
           }
 
           tableHtml += `
@@ -130,15 +128,13 @@
                 <td>14:00~17:00</td>
           `;
 
-          // 填寫下午列 (日:0 到 五:5)
-          for (let d = 0; d <= 5; d++) {
-            tableHtml += `<td>${grid.aft[d] ? '○' : '休'}</td>`;
+          // 填寫下午列 (日:0 到 六:6)
+          for (let d = 0; d <= 6; d++) {
+			   if (grid.morn[d] || grid.aft[d]) {
+				tableHtml += `<td>${grid.aft[d] ? '○' : '休'}</td>`;
+			  }
           }
-
-          // 若週六有營業，才需補上週六下午欄位
-          if (grid.morn[6] || grid.aft[6]) {
-            tableHtml += `<td>${grid.aft[6] ? '○' : '休'}</td>`;
-          }
+         
 
           tableHtml += `
               </tr>
@@ -160,9 +156,9 @@
 	
 	setTimeout(() => {
 	  if (window.frameElement) {
-		window.frameElement.style.height = (document.body.scrollHeight + 50) + 'px';
+		window.frameElement.style.height = (document.body.scrollHeight + 100) + 'px';
 	  }
-	}, 50);
+	}, 100);
 	
   </script>
 
