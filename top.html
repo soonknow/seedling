@@ -87,7 +87,7 @@
 
 		  // 2. 組裝 HTML 表格
 		  let tableHtml = `
-			<table class="hours-table">
+			<table class="hours-table" style="width: 100%;">
 			  <tr>
 				<td colspan="8" class="title-header">
 				  <p style="font-size: 36px;">營業時間</p>
@@ -105,7 +105,9 @@
 				<td>六</td>
 			  </tr>
 			  <tr>
-				<td>08:00~11:50</td>
+				<td>08:00<br>
+				~<br>
+				11:50</td>
 		  `;
 
 		  // 上午列 (0~6)
@@ -120,7 +122,7 @@
 		  tableHtml += `
 			  </tr>
 			  <tr>
-				<td>14:00~17:00</td>
+				<td>14:00<br>~<br>17:00</td>
 		  `;
 
 		  // 下午列 (0~6)
